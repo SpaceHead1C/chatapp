@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
@@ -18,6 +19,9 @@ import { environment } from '../environments/environment';
 // Routes
 import { appRoutes } from './routes';
 
+// Material2
+import { AngularMaterialModule } from './materialdesign';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +31,8 @@ import { appRoutes } from './routes';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    AngularMaterialModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.config),
     AngularFireModule
