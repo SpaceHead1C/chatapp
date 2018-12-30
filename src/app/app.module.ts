@@ -18,6 +18,7 @@ import { environment } from '../environments/environment';
 
 // Material2
 import { MaterialdesignModule } from './materialdesign';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { MaterialdesignModule } from './materialdesign';
     BrowserModule,
     BrowserAnimationsModule,
     MaterialdesignModule,
+    FlexLayoutModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.config),
     AngularFirestoreModule
