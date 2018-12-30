@@ -52,6 +52,16 @@ export class AuthService {
         });
   }
 
+  logout() {
+    this.afauth.auth.signOut()
+        .then(() => {
+          this.router.navigate(['login']);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+  }
+
   // Set user data to a local user collection
   setUserData(email: string, displayName: string, photoURL: string) {
     const path = `users/${this.currentUserId}`;
