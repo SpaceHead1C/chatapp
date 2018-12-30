@@ -75,7 +75,7 @@ export class AuthService {
     const data = { status: status };
     statuscollection.update(data).catch(err => {
       console.log(err);
-    });
+    })
   }
 
 }
