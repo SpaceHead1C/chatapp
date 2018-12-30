@@ -40,6 +40,18 @@ export class AuthService {
         });
   }
 
+  login(usercreds) {
+    return this.afauth.auth.signInWithEmailAndPassword(usercreds.email, usercreds.password)
+        .then(user => {
+          this.authState = user.user;
+          const status = 'online';
+          this.setUserStatus(status);
+          this.router.navigate(['dashboard']);
+        }).catch(err => {
+          console.log(err);
+        });
+  }
+
   // Set user data to a local user collection
   setUserData(email: string, displayName: string, photoURL: string) {
     const path = `users/${this.currentUserId}`;
@@ -51,8 +63,19 @@ export class AuthService {
       displayName: displayName,
       photoURL: photoURL
     });
-    status.set({ status: 'online' });
+    status.set({ 
+      email: email,
+      status: 'online'
+    });
     this.router.navigate(['dashboard']);
+  }
+
+  setUserStatus(status) {
+    const statuscollection = this.afs.doc(`status/${this.currentUserId}`);
+    const data = { status: status };
+    statuscollection.update(data).catch(err => {
+      console.log(err);
+    });
   }
 
 }
