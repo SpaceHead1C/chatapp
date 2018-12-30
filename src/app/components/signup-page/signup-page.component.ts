@@ -38,6 +38,8 @@ export class SignupPageComponent implements OnInit {
   }
 
   createAccount() {
+    this.usercreds.email = this.emailFormControl.value;
+    this.usercreds.password = this.passwordFormControl.value;
     this.auth.signUp(this.usercreds);
   }
 
