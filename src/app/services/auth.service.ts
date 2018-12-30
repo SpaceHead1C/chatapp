@@ -20,6 +20,10 @@ export class AuthService {
     });
   }
 
+  authUser(): boolean {
+    return this.authState !== null && this.authState !== undefined;
+  }
+
   get currentUserId(): string { return this.authState !== null ? this.authState.uid : ''; }
 
   signUp(usercreds) {
