@@ -25,13 +25,15 @@ import { environment } from '../environments/environment';
 // Material2
 import { MaterialdesignModule } from './materialdesign';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
     SignupPageComponent,
-    DashboardComponent
+    DashboardComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
