@@ -10,9 +10,14 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { SignupPageComponent } from './components/signup-page/signup-page.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
+// Services
+import { AuthService } from './services/auth.service';
+import { AuthguardService } from './services/authguard.service';
+
 // Firebase & Angularfire2
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 // Firebase config
 import { environment } from '../environments/environment';
@@ -37,9 +42,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ReactiveFormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.config),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AuthguardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
