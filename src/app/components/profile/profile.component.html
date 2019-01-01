@@ -4,7 +4,20 @@
 <h3>Nickname: {{ user.displayName }}</h3>
 <div></div>
 <div fxLayout="row" fxLayoutAlign="center">
-  <span matTooltip="Change your nickname"><button mat-mini-fab color="primary" (click)="editName()"><mat-icon>mode_edit</mat-icon></button>&nbsp;&nbsp;</span>
+  <mat-form-field *ngIf="nicknameEdit">
+    <input matInput placeholder="Enter new nickname" [(ngModel)]="newNickname" type="text">
+  </mat-form-field>
+  <span matTooltip="OK">
+    <button *ngIf="nicknameEdit" mat-icon-button (click)="updateName()">
+      <mat-icon color="primary">check</mat-icon>
+    </button>
+  </span>
+  <span matTooltip="Cancel">
+    <button *ngIf="nicknameEdit" mat-icon-button (click)="editName()">
+      <mat-icon color="warn">cancel</mat-icon>
+    </button>
+  </span>
+  <span matTooltip="Change your nickname"><button *ngIf="!nicknameEdit" mat-mini-fab color="primary" (click)="editName()"><mat-icon>mode_edit</mat-icon></button>&nbsp;&nbsp;</span>
   <span matTooltip="Change profile pic"><button mat-mini-fab color="primary" (click)="fileInput.click()"><mat-icon>assignment_ind</mat-icon></button>&nbsp;&nbsp;</span>
   <input #fileInput type="file" (change)="chooseImage($event)" style="display: none;" />
 </div>
