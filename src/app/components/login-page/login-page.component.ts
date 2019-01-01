@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -26,7 +27,10 @@ export class LoginPageComponent implements OnInit {
     Validators.required
   ]);
 
-  constructor(private router: Router, private auth: AuthService) { }
+  constructor(
+      private router: Router,
+      private auth: AuthService,
+      private snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
@@ -34,7 +38,23 @@ export class LoginPageComponent implements OnInit {
   login() {
     this.usercreds.email = this.emailFormControl.value;
     this.usercreds.password = this.passwordFormControl.value;
-    this.auth.login(this.usercreds);
+    
+    this.auth.login(this.usercreds)
+        .catch(err => {
+          let msg: string;
+          switch (err.code) {
+            case 'auth/user-not-found':
+              msg = 'User not found';
+              break;
+            case 'auth/wrong-password':
+              msg = 'Wrong password';
+              break;
+            default:
+              msg = `Error with code ${err.code}: ${err.message}`;
+              break;
+          }
+          this.snackBar.open(msg, 'Close', { duration: 3000 });
+        });
   }
 
   signup() {

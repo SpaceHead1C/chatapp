@@ -9,14 +9,19 @@ import { AppComponent } from './app.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { SignupPageComponent } from './components/signup-page/signup-page.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 // Services
 import { AuthService } from './services/auth.service';
 import { AuthguardService } from './services/authguard.service';
+import { UserService } from './services/user.service';
 
 // Firebase & Angularfire2
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 // Firebase config
@@ -25,7 +30,6 @@ import { environment } from '../environments/environment';
 // Material2
 import { MaterialdesignModule } from './materialdesign';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,9 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     LoginPageComponent,
     SignupPageComponent,
     DashboardComponent,
-    NavBarComponent
+    NavBarComponent,
+    SidebarComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -45,11 +51,13 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.config),
     AngularFirestoreModule,
+    AngularFireStorageModule,
     AngularFireAuthModule
   ],
   providers: [
     AuthService,
-    AuthguardService
+    AuthguardService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
