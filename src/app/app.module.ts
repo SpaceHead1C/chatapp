@@ -26,6 +26,7 @@ import { environment } from '../environments/environment';
 import { MaterialdesignModule } from './materialdesign';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     LoginPageComponent,
     SignupPageComponent,
     DashboardComponent,
-    NavBarComponent
+    NavBarComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
