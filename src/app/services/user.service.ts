@@ -11,6 +11,8 @@ import * as firebase from 'firebase';
 })
 export class UserService {
   currentUser = new BehaviorSubject<firebase.User>(this.afauth.auth.currentUser);
+  spinner = new BehaviorSubject<boolean>(false);
+  error = new BehaviorSubject<Error>({name: '', message: ''});
 
   constructor(
       private afauth: AngularFireAuth,
@@ -33,6 +35,7 @@ export class UserService {
   }
 
   updateProfilePic(file) {
+    this.spinner.next(true);
     return this.storage.upload('profilepics/' + this.afauth.auth.currentUser.uid, file)
         .then(data => {
           data.ref.getDownloadURL().then(downloadURL => {
@@ -43,10 +46,23 @@ export class UserService {
                   this.afauth.auth.currentUser.updateProfile({
                     displayName: this.afauth.auth.currentUser.displayName,
                     photoURL: downloadURL
+                  }).then(() => {
+                    this.spinner.next(false);
+                  }).catch(err => {
+                    this.spinner.next(false);
+                    this.error.next(err);
                   });
+                }).catch(err => {
+                  this.spinner.next(false);
+                  this.error.next(err);
                 });
+          }).catch(err => {
+            this.spinner.next(false);
+            this.error.next(err);
           });
-          
+        }).catch(err => {
+          this.spinner.next(false);
+          this.error.next(err);
         });
   }
 }

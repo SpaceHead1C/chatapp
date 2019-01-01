@@ -13,10 +13,19 @@ export class ProfileComponent implements OnInit {
   public nicknameEdit: boolean = false;
   public newNickname: string;
   public selectedFiles: FileList;
+  public spinnerToggle: boolean = false;
 
   constructor(private userService: UserService, private snackBar: MatSnackBar) {
-    this.userService.currentUser.subscribe(u => {
-      this.user = u;
+    this.userService.currentUser.subscribe(value => {
+      this.user = value;
+    });
+    this.userService.spinner.subscribe(value => {
+      this.spinnerToggle = value;
+    });
+    this.userService.error.subscribe((value: Error) => {
+      if (value.message) {
+        this.snackBar.open(value.message, 'Close', { duration: 5000 });
+      }
     });
   }
 
@@ -41,7 +50,6 @@ export class ProfileComponent implements OnInit {
     if (this.selectedFiles.item(0)) {
       this.userService.updateProfilePic(this.selectedFiles.item(0))
           .catch(err => {
-            console.log(err);
             this.snackBar.open(err.message, 'Close', { duration: 5000 });
           });
     }
