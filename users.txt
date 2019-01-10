@@ -5,3 +5,7 @@ test-user:
 R0B:
     robert@mail.com
     r0bert0
+
+Mike:
+    mike@mail.com
+    mchlNight
