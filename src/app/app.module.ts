@@ -30,6 +30,7 @@ import { environment } from '../environments/environment';
 // Material2
 import { MaterialdesignModule } from './materialdesign';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AddFriendComponent } from './components/add-friend/add-friend.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     DashboardComponent,
     NavBarComponent,
     SidebarComponent,
-    ProfileComponent
+    ProfileComponent,
+    AddFriendComponent
   ],
   imports: [
     BrowserModule,
