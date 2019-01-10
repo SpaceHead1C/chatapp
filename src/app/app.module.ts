@@ -12,6 +12,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { AddFriendComponent } from './components/add-friend/add-friend.component';
 
 // Services
 import { AuthService } from './services/auth.service';
@@ -30,7 +31,7 @@ import { environment } from '../environments/environment';
 // Material2
 import { MaterialdesignModule } from './materialdesign';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { AddFriendComponent } from './components/add-friend/add-friend.component';
+import { RequestsService } from './services/requests.service';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { AddFriendComponent } from './components/add-friend/add-friend.component
   providers: [
     AuthService,
     AuthguardService,
-    UserService
+    UserService,
+    RequestsService
   ],
   bootstrap: [AppComponent]
 })
