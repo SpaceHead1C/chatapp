@@ -32,6 +32,7 @@ import { environment } from '../environments/environment';
 import { MaterialdesignModule } from './materialdesign';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RequestsService } from './services/requests.service';
+import { RequestsComponent } from './components/requests/requests.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { RequestsService } from './services/requests.service';
     NavBarComponent,
     SidebarComponent,
     ProfileComponent,
-    AddFriendComponent
+    AddFriendComponent,
+    RequestsComponent
   ],
   imports: [
     BrowserModule,
