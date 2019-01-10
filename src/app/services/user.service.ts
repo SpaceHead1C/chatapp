@@ -4,6 +4,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 import * as firebase from 'firebase';
 
 @Injectable({
@@ -64,5 +65,16 @@ export class UserService {
           this.spinner.next(false);
           this.error.next(err);
         });
+  }
+
+  getAllUsers() {
+    return this.afs.collection('users').valueChanges().pipe(map(users => {
+      users.forEach((element: any, i) => {
+        if (element.email == this.afauth.auth.currentUser.email) {
+          users.splice(i, 1);
+        }
+      });
+      return users;
+    }));
   }
 }
